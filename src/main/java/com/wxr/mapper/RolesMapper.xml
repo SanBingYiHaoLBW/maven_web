@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wxr.mapper.RolesMapper">
+	<select id="selectAllRoles" resultType="roles">
+		select * from roles
+	<where>
+       <if test="Name!=null and Name!=''">
+        and Name like "%"#{Name}"%"
+      </if>
+  </where>
+
+    limit #{page},#{limit}
+
+</select>
+	<select id="getConutRoles" resultType="int">
+		select count(*) from roles
+	<where>
+      <if test="Name!=null and Name!=''">
+         Name like "%"#{Name}"%"
+   </if>
+
+</where>
+</select>
+<!--左右穿梭狂 -->
+	<select id="getRight" resultType="com.wxr.entity.QuanXian">
+		select `Name` as title,Id as value from modules WHERE Id  in(SELECT ModuleId from rolemodules where RoleId=#{roleId})
+	</select>
+	<!-- <select id="getLeft" resultType="com.wxr.entity.QuanXian">
+		select `Name` as title,Id as value from modules 
+	</select> -->
+	<!--添加用户角色 -->
+	<insert id="addrolemodules">
+	insert into rolemodules(Id,RoleId,ModuleId) values(uuid(),#{rid},#{mid});
+	</insert>
+	<!--删除用户角色 -->
+	<delete id="delrolemodules">
+	delete  from rolemodules  where ModuleId=#{mid} and RoleId=#{rid}
+	</delete>
+</mapper>
+

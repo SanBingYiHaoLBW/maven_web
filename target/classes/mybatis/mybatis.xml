@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+ <configuration>
+ <!--  <settings>
+  日志
+ <setting name="logImpl" value="LOG4J"/>
+ </settings>  -->
+ <typeAliases>
+ <typeAlias type="com.wxr.entity.Users" alias="users"/>
+ <typeAlias type="com.wxr.entity.Modules" alias="modules"/>
+ <typeAlias type="com.wxr.entity.Roles" alias="roles"/>
+ </typeAliases>
+ <!--注册映射  -->
+ <mappers>
+ <!-- <mapper resource="com/wxr/dao/UserMapper.xml"/>  -->
+ </mappers>
+ 
+ </configuration>
